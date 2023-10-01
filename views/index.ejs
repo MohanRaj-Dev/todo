@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for the body */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #FFA500;
+        }
+
+       
+        /* Custom CSS for form and list */
+        .todo-form {
+            margin-bottom: 20px;
+        }
+
+        .todo-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .todo-list li {
+            margin-bottom: 5px;
+        }
+
+        /* Custom CSS for delete button */
+        .delete-button {
+            background-color: red;
+            color: white;
+        }
+
+        /* Custom CSS for add button */
+        .add-button {
+            background-color: #ADD8E6;
+            margin-right: 10px; /* Add margin to the right of the button */
+        }
+    </style>
+    <title>Todo List</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Todo List</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        </button>
+        
+    </nav>
+
+    <div class="container mt-5">
+        <!-- Bootstrap-styled form -->
+        <form action="/" method="post" enctype="application/x-www-form-urlencoded" class="todo-form">
+            <div class="input-group">
+                <input type="text" name="title" class="form-control" placeholder="Add a new task">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary add-button">Add</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Bootstrap-styled list -->
+        <ul class="list-group">
+            <% for (let i = 0; i < todo.length; i++) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <%= todo[i]['title'] %>
+                    <form action="/<%= todo[i]['_id'] %>?_method=DELETE" method="post">
+                    <button class=" btn btn-danger delete-button" type="submit">Delete</button>
+                        
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+
+    <!-- Bootstrap and other scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
